@@ -1,5 +1,5 @@
 import React from 'react';
-import Post from './Components/post';
+import Post from './Components/Post';
 //import logo from './logo.svg';
 import './App.css';
 
