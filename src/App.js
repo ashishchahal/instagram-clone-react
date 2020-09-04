@@ -13,6 +13,7 @@ function App() {
 
       <h1>this is the header for the instagram clone</h1>
 
+      <Post />
       {/* {Header} */}
       {/* {posts} */}
             {/* {posts} */}
