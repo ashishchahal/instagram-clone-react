@@ -13,6 +13,13 @@ function App() {
 
       <h1>this is the header for the instagram clone</h1>
 
+      <Post 
+        username="Ashish_hacker" 
+        imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcToxjpNRTS8lgTN2AFMdpsBwvF5zguP2PJL-g&usqp=CAU" 
+        caption=": WOW..I am awake at 3 am. cannot sleep and coding..wonderful"
+      />
+      <Post />
+      <Post />
       <Post />
       {/* {Header} */}
       {/* {posts} */}

@@ -4,7 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 
 function Post() {
     return (
-        <div>
+        <div className="post">
             <div className="post__header">
             <Avatar 
                 className="post__avatar"
@@ -17,7 +17,7 @@ function Post() {
             {/* {header -> avatar + username} */}
 
             <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/512px-React-icon.svg.png" 
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcToxjpNRTS8lgTN2AFMdpsBwvF5zguP2PJL-g&usqp=CAU" 
                 alt="react-logo" 
                 className="post__image" />
             {/* image */}
