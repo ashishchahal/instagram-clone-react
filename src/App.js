@@ -1,7 +1,8 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import Post from './Components/Post';
 //import logo from './logo.svg';
 import './App.css';
+import { db } from './firebase';
 
 function App() {
   const [posts, setPosts] = useState([
@@ -21,6 +22,17 @@ function App() {
       caption:""
     },
   ]);
+
+  // useEffect -> runs a piece of code based on a specific condition
+
+  useEffect(()=>{
+    // this is whre the code runs
+    db.collection('posts').onSnapshot(snapshot => {
+      //every time a new post is added, this code fires..
+      
+    })
+  },[posts])
+
   return (
     <div className="App">
       
