@@ -87,12 +87,18 @@ function App() {
         })
       })
       .catch((error) => alert(error.message))
+
+    setOpen(false);
   }
 
   const signIn = (e) => {
     e.preventDefault();
 
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => alert(error.message))
 
+    setOpenSignIn(false);
   }
 
   return (
