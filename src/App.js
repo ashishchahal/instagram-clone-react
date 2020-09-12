@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Post from './Components/Post';
+import ImageUpload from './Components/ImageUpload';
 import './App.css';
 import { db, auth } from './firebase';
 import Modal from '@material-ui/core/Modal';
@@ -48,12 +49,20 @@ function App() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        //user has logged in..
-        console.log(authUser);
+        // user has logged in..
+
         setUser(authUser);
 
+        // if (authUser.displayName) {
+        //   // dont update username
+        // } else {
+        //   // if we just created someone...
+        //   return authUser.updateProfile({
+        //     displayName: username,
+        //   });
+        // }
       } else {
-        //user has logged out..
+        // user has logged out..
         setUser(null);
       }
     })
@@ -66,7 +75,7 @@ function App() {
 
   useEffect(() => {
     // this is whre the code runs
-    db.collection('posts').onSnapshot(snapshot => {
+    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
       //every time a new post is added, this code fires..
       setPosts(snapshot.docs.map(doc => ({
         id: doc.id,
@@ -102,8 +111,19 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="app">
 
+      {/* this is called optional chaining for conditional rendering */}
+
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName} />
+      ) :
+        (
+          <h4>Sorry you need to login to upload</h4>
+        )
+      }
+
+      {/*  Modal for signUp form */}
       <Modal
         open={open}
         onClose={() => setOpen(false)}
@@ -140,6 +160,8 @@ function App() {
           </form>
         </div>
       </Modal>
+
+      {/* Modal for signIn form */}
 
       <Modal
         open={openSignIn}
@@ -181,8 +203,8 @@ function App() {
           <Button onClick={() => auth.signOut()}>Log Out</Button>
         ) : (
             <div className="app__loginContainer">
-              <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
-              <Button onClick={() => setOpen(true)}>Sign Up</Button>
+              <Button type="submit" onClick={() => setOpenSignIn(true)}>Sign In</Button>
+              <Button type="submit" onClick={() => setOpen(true)}>Sign Up</Button>
             </div>
 
           )
