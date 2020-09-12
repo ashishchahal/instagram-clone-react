@@ -113,16 +113,6 @@ function App() {
   return (
     <div className="app">
 
-      {/* this is called optional chaining for conditional rendering */}
-
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName} />
-      ) :
-        (
-          <h4>Sorry you need to login to upload</h4>
-        )
-      }
-
       {/*  Modal for signUp form */}
       <Modal
         open={open}
@@ -195,20 +185,26 @@ function App() {
       </Modal>
 
       <div className="app__header">
-        <img alt="Instagram" className="app__headerImage" src="https://instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" />
+        <img
+          alt="Instagram"
+          className="app__headerImage"
+          src="https://instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+        />
+
+        {
+          user ? (
+            <Button onClick={() => auth.signOut()}>Log Out</Button>
+          ) : (
+              <div className="app__loginContainer">
+                <Button type="submit" onClick={() => setOpenSignIn(true)}>Sign In</Button>
+                <Button type="submit" onClick={() => setOpen(true)}>Sign Up</Button>
+              </div>
+
+            )
+        }
       </div>
 
-      {
-        user ? (
-          <Button onClick={() => auth.signOut()}>Log Out</Button>
-        ) : (
-            <div className="app__loginContainer">
-              <Button type="submit" onClick={() => setOpenSignIn(true)}>Sign In</Button>
-              <Button type="submit" onClick={() => setOpen(true)}>Sign Up</Button>
-            </div>
 
-          )
-      }
 
 
       <h1>this is the header for the instagram clone</h1>
@@ -217,6 +213,16 @@ function App() {
         posts.map(({ id, post }) => (
           <Post username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
         ))
+      }
+
+      {/* this is called optional chaining for conditional rendering */}
+
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName} />
+      ) :
+        (
+          <h4>Sorry you need to login to upload</h4>
+        )
       }
 
     </div>
