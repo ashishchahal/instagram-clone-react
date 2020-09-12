@@ -209,7 +209,14 @@ function App() {
       <div className="app__posts">
         <div className="app__postsLeft">
           {user ? (posts.map(({ id, post }) => (
-            <Post username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
+            <Post
+              key={id}
+              postId={id}
+              username={post.username}
+              caption={post.caption}
+              imageUrl={post.imageUrl}
+              user={user}
+            />
           ))
           ) :
             (
