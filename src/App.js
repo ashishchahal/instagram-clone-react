@@ -6,6 +6,7 @@ import { db, auth } from './firebase';
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Input } from '@material-ui/core';
+import InstagramEmbed from 'react-instagram-embed';
 
 function getModalStyle() {
   const top = 50;
@@ -205,15 +206,37 @@ function App() {
       </div>
 
 
+      <div className="app__posts">
+        <div className="app__postsLeft">
+          {user ? (posts.map(({ id, post }) => (
+            <Post username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
+          ))
+          ) :
+            (
+              <h3> Please sign up or sign in</h3>
+            )
+
+          }
+        </div>
+
+        <div className="app__postsRight">
+          <InstagramEmbed
+            url='https://instagr.am/p/Zw9o4/'
+            maxWidth={320}
+            hideCaption={false}
+            containerTagName='div'
+            protocol=''
+            injectScript
+            onLoading={() => { }}
+            onSuccess={() => { }}
+            onAfterRender={() => { }}
+            onFailure={() => { }}
+          />
+        </div>
+
+      </div>
 
 
-      <h1>this is the header for the instagram clone</h1>
-
-      {
-        posts.map(({ id, post }) => (
-          <Post username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
-        ))
-      }
 
       {/* this is called optional chaining for conditional rendering */}
 

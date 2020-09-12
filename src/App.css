@@ -19,6 +19,16 @@
   object-fit: contain
 }
 
+.app__posts{
+  padding: 20px;
+  display:flex;
+  justify-content: center
+}
+
+.app__postsRight{
+  margin-left: 20px;
+}
+
 .app__signup{
   display: flex;
   flex-direction: column;
